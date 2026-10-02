@@ -20,7 +20,7 @@ public class Renderer extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setColor(Color.BLACK);
-
+        g2.fillRect(100, 100, 100, 100);
         if(window.mouseHandler.isMousePressed() && window.mouseHandler.isInsideGrid(grid)){
 
             g2.fillRect(window.mouseHandler.getMouseX() - 12, window.mouseHandler.getMouseY() - 20, 10,10);

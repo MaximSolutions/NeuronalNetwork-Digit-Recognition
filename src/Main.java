@@ -5,7 +5,7 @@ import window.Window;
 public class Main {
     public static void main(String[] args) {
 
-        Window window = new Window(900, 900, "Number Recognition");
+        Window window2 = new Window(500, 500, "Number Recognition");
 
     }
 }
