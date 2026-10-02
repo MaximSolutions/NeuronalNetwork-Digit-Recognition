@@ -85,7 +85,7 @@ public class Renderer extends JPanel {
         try {
             grid.grid[x * 24 + y] = 1.0f;
             grid.grid[x * 24 + y + 1] = 0.7f;
-            grid.grid[x * 24 + y + 24] =  0.7gf;
+            grid.grid[x * 24 + y + 24] =  0.7;
             grid.grid[x * 24 + y + 25] = 0.1f;
         }catch (ArrayIndexOutOfBoundsException e) {
 
