@@ -11,6 +11,8 @@ public class MouseHandler extends MouseAdapter {
     private boolean mousePressed;
     private int mouseX, mouseY;
 
+    private int mouseOffsetX = -70;
+    private int mouseOffsetY = -90;
     @Override
     public void mousePressed(MouseEvent e) {
         mousePressed = true;
@@ -18,8 +20,8 @@ public class MouseHandler extends MouseAdapter {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        mouseX = e.getX();
-        mouseY = e.getY();
+        mouseX = e.getX() + mouseOffsetX;
+        mouseY = e.getY() + mouseOffsetY;
     }
 
     @Override
@@ -29,9 +31,9 @@ public class MouseHandler extends MouseAdapter {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        mouseX = e.getX();
-        mouseY = e.getY();
-        System.out.println("asd");
+        mouseX = e.getX() + mouseOffsetX;
+        mouseY = e.getY() + mouseOffsetY;
+
     }
 
     public boolean isInsideGrid(Grid grid){

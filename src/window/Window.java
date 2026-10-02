@@ -26,10 +26,10 @@ public class Window extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
         this.addMouseListener(mouseHandler);
         this.addMouseMotionListener(mouseHandler);
         this.add(renderer);
+        this.setVisible(true);
     }
 
 
