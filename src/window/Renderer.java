@@ -67,29 +67,29 @@ public class Renderer extends JPanel {
     }
 
     private int determineGrayScale(double value) {
-        if (value == 1) {
-            return 255;
-        }
-        if(value < 1 && value >= 0.7) {
-            return 200;
-        }
-        if(value < 0.7 && value >= 0.4) {
-            return 150;
-        }
-        if(value < 0.5 && value >= 0.1) {
-            return 100;
-        }
-        return 0;
+        return (int) Math.round(value * 255);
     }
-    private void brush(int x, int y) {
-        try {
-            grid.grid[x * 24 + y] = 1.0f;
-            grid.grid[x * 24 + y + 1] = 0.7f;
-            grid.grid[x * 24 + y + 24] =  0.7;
-            grid.grid[x * 24 + y + 25] = 0.1f;
-        }catch (ArrayIndexOutOfBoundsException e) {
+    private void brush(int cellX, int cellY) {
+        double[][] brush = {
+                {0.15, 0.45, 0.15},
+                {0.45, 1.00, 0.45},
+                {0.15, 0.45, 0.15}
+        };
 
-        }
+       for(int row = 0; row < 3; row++) {
+           for(int col = 0; col < 3; col++) {
+               int x = cellX + col -1;
+               int y = cellY + row -1;
+
+               if (x < 0 || x >= 24 || y < 0 || y > 24)  {
+                   continue;
+               }
+
+               int index = x * 24 + y;
+
+               grid.grid[index] = (float) Math.max(grid.grid[index], brush[row][col]);
+           }
+       }
 
     }
 }
