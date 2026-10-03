@@ -63,7 +63,12 @@ public class Renderer extends JPanel {
                 g2.fillRect(Grid.OFFSET_X + row * grid.cellWidth, Grid.OFFSET_Y + col * grid.cellHeight, grid.cellWidth, grid.cellHeight);
             }
         }
-
+        StringBuilder stringBuilder = new StringBuilder();
+        String outputTest = "";
+        for(int i = 0; i < grid.grid.length; i++) {
+            stringBuilder.append(grid.grid[i] + ",");
+        }
+        //System.out.println("{"+stringBuilder.toString()+"}");
     }
 
     private int determineGrayScale(double value) {
