@@ -1,8 +1,12 @@
 package window;
 
 import listeners.MouseHandler;
+import nn.Neuron;
+import nn.NeuronalNetwork;
+import utils.Constants;
 
 import javax.swing.*;
+import javax.swing.text.Style;
 import java.awt.*;
 
 public class Renderer extends JPanel {
@@ -12,7 +16,7 @@ public class Renderer extends JPanel {
 
     public Renderer(Window _window) {
         this.window = _window;
-        this.grid = new Grid(24, 24, 20, 20);
+        this.grid = window.getGrid();
     }
 
     @Override
@@ -35,10 +39,50 @@ public class Renderer extends JPanel {
            brush(cellX, cellY);
         }
 
+
         drawGrid(g2);
+        // drawGridValues(g2);
+        drawNeurons(g2);
+        window.getNeuronalNetwork().update(grid.grid);
 
         repaint();
     }
+
+    private void drawNeurons(Graphics2D g2) {
+        g2.setColor(Color.WHITE);
+        int x = 600,y;
+        int radius = 40;
+        double grayScale;
+        Neuron n;
+        for(int i = 0; i < 10; i++) {
+            n = window.getNeuronalNetwork().getOutputLayer().neurons[i];
+            grayScale = (int)(n.getOutput() * 10);
+            grayScale/=10;
+            y = 75 + radius*i;
+            g2.setColor(new Color((int) (255 * grayScale), (int)(255 * grayScale),(int) (255 * grayScale)));
+            g2.fillOval(x - radius / 4, (int) (y - radius / 1.5), radius, radius);
+            g2.setColor(Color.RED);
+            g2.drawString("" + grayScale, x,y);
+            g2.setColor(Color.WHITE);
+            g2.drawString("" + i + ":", x - 50,y);
+        }
+    }
+
+    private void drawGridValues(Graphics2D g2) {
+        g2.setColor(Color.GRAY);
+        Font font = new Font("", 1, 6);
+        g2.setFont(font);
+        double value;
+        for(int row = 0; row < 24; row++) {
+            for (int col = 0; col < 24; col++) {
+                value = grid.grid[row * 24 + col];
+                value = (int) (value * 10);
+
+                g2.drawString("" + value / 10, Grid.OFFSET_X + row * grid.cellWidth, Grid.OFFSET_Y + col * grid.cellHeight);
+            }
+        }
+    }
+
 
     private void drawGrid(Graphics2D g2){
         g2.setColor(Color.WHITE);

@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class NeuronalNetwork {
 
 
-    private Layer inputLayer;
+    private InputLayer inputLayer;
     private HiddenLayer hiddenLayerOne, hiddenLayerTwo;
     private OutputLayer outputLayer;
     private int size;
@@ -34,9 +34,20 @@ public class NeuronalNetwork {
 
         double[] goal = {0,0,0,1,0,0,0,0,0,0};
 
-            System.out.println(outputLayer.costFunction( goal));
+
 
     }
 
+    public void update(double[] dataInput) {
+        inputLayer.update(dataInput, dataInput.length);
+        hiddenLayerOne.update(inputLayer.neurons);
+        hiddenLayerTwo.update(hiddenLayerOne.neurons);
+        outputLayer.update(hiddenLayerTwo.neurons);
 
+
+    }
+
+    public OutputLayer getOutputLayer() {
+        return outputLayer;
+    }
 }

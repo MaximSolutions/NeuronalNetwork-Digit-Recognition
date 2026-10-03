@@ -39,17 +39,7 @@ public class OutputLayer extends Layer{
         }
     }
 
-    public double costFunction( double [] goalValues) {
-        double cost = 0;
-
-        if(goalValues.length != output.length) {
-            System.exit(-1);
-            return -9999999;
-        }
-
-        for(int i = 0; i < size; i++) {
-            cost+= (Math.pow(output[i] - goalValues[i], 2));
-        }
-        return cost;
+    public double[] getOutput() {
+        return output;
     }
 }

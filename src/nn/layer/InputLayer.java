@@ -17,6 +17,11 @@ public class InputLayer extends Layer{
 
     }
 
+    public void update(double[] dataInput, int size) {
+        this.dataInput = dataInput;
+        this.size = size;
+        init();
+    }
     @Override
     public void init() {
         Neuron neuron;

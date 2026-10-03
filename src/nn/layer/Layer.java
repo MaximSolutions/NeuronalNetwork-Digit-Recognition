@@ -22,15 +22,20 @@ public abstract class Layer {
     public void randomWeights() {
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < neuronsBefore.length; j++) {
-                weigths[i][j] = Utils.getRandomNumber(-10, 10);
+                weigths[i][j] = Utils.getRandomNumber(-22, 22);
             }
         }
+    }
+
+    public void update(Neuron[] neuronsBefore) {
+        this.neuronsBefore = neuronsBefore;
+        init();
     }
 
     public void randomBiases() {
         for(int i = 0; i < size; i++) {
 
-            biases[i] = Utils.getRandomNumber(-20, 20);
+            biases[i] = Utils.getRandomNumber(-56, 45);
 
         }
     }
